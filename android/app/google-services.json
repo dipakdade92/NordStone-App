@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "879561707589",
+    "project_id": "nordapp-e242c",
+    "storage_bucket": "nordapp-e242c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879561707589:android:c87ab485bdb2ef8a0d932c",
+        "android_client_info": {
+          "package_name": "com.nordstoneapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879561707589-gvcu7pe92ia13rd2q06m3qamsfcg8j4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nordstoneapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "879561707589-8qojihtefq7kki13967d7riqv4v5ekfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0kbECfszETea4d636vlsJrkrDyv5XP6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879561707589-8qojihtefq7kki13967d7riqv4v5ekfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
