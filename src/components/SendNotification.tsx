@@ -125,5 +125,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
     fontWeight: '500',
+    textDecorationLine: 'underline',
   },
 });

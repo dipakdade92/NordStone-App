@@ -35,6 +35,7 @@ const SendMessage = () => {
   const fetchMessages = async () => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    setLoading(false);
     try {
       const messagesCollection = collection(db, 'messages');
       const messagesQuery = query(messagesCollection);
@@ -45,12 +46,10 @@ const SendMessage = () => {
       }));
 
       setMessageList(messages);
-
       return messages;
     } catch (error) {
       console.error('Error fetching messages from Firestore:', error);
     }
-    setLoading(false);
   };
 
   const handleSaveTextMessage = async () => {
@@ -80,6 +79,7 @@ const SendMessage = () => {
         value={message}
         onChangeText={setMessage}
         placeholder={'Enter Message'}
+        maxLength={60}
       />
       <TouchableOpacity
         onPress={() => {
@@ -101,7 +101,7 @@ const SendMessage = () => {
           renderItem={({item, index}: {item: any; index: number}) => {
             return (
               <View style={styles.messageTextWrapper} key={`${item}-${index}`}>
-                <Text>{item.text}</Text>
+                <Text numberOfLines={3}>{item.text}</Text>
               </View>
             );
           }}
@@ -136,6 +136,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: wp(10),
     alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: Colors.DimGray,
+    marginBottom: wp(4),
+    alignItems: 'center',
+    borderRadius: wp(10),
+    paddingHorizontal: wp(4),
   },
   flatlistMainWrapper: {
     marginTop: wp(5),
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
   },
   flatlistWrapper: {
     width: wp(100),
-    marginTop: wp(10),
+    marginTop: wp(5),
   },
   inputWrapper: {
     borderWidth: 1,
