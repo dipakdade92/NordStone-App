@@ -8,6 +8,7 @@ import {
   Image,
   SafeAreaView,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import Colors from '../utils/colors';
 import {wp} from '../utils/responsive';
@@ -24,6 +25,7 @@ const SignUp = ({navigation}: any) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const validate = () => {
     const newErrors: any = {};
@@ -54,9 +56,11 @@ const SignUp = ({navigation}: any) => {
   };
 
   const handleSignup = async () => {
+    setLoading(true)
     const validationErrors: any = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setLoading(false)
     } else {
       setErrors({fullName: '', email: '', password: ''});
       const app = initializeApp(firebaseConfig);
@@ -80,6 +84,7 @@ const SignUp = ({navigation}: any) => {
         navigation.navigate('dashboard');
       } catch (error) {
         console.error('Error creating user or saving details:', error);
+        setLoading(false);
       }
     }
   };
@@ -126,8 +131,11 @@ const SignUp = ({navigation}: any) => {
           </Text>
         </Text>
       </View>
-      <TouchableOpacity onPress={handleSignup} style={styles.buttonWrapper}>
-        <Text style={styles.buttonTextWrapper}>{Constant.SignUp}</Text>
+      <TouchableOpacity onPress={handleSignup} style={styles.buttonWrapper} disabled={loading}>
+        { loading ?   
+          <ActivityIndicator size="large" color={Colors.White} /> 
+          : <Text style={styles.buttonTextWrapper}>{Constant.SignUp}</Text>
+        }
       </TouchableOpacity>
     </SafeAreaView>
   );

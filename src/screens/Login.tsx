@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import Assets from '../utils/assets';
 import Constant from '../utils/constant';
@@ -23,9 +24,10 @@ import {initializeApp} from 'firebase/app';
 import {firebaseConfig} from '../config/firebaseConfig';
 
 const AuthScreen = ({navigation}: any) => {
-  const [email, setEmail] = useState<string>('bbirla214@gmail.com');
-  const [password, setPassword] = useState<string>('Birla21@');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const validate = () => {
     const newErrors: any = {};
@@ -49,9 +51,11 @@ const AuthScreen = ({navigation}: any) => {
   };
 
   async function handleLogin() {
+    setLoading(true);
     const validationErrors: any = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      setLoading(false);
     } else {
       setErrors({fullName: '', email: '', password: ''});
       const app = initializeApp(firebaseConfig);
@@ -70,14 +74,17 @@ const AuthScreen = ({navigation}: any) => {
 
         if (!querySnapshot.empty) {
           const userDoc = querySnapshot.docs[0];
+          setLoading(false);
           navigation.navigate('dashboard');
           return {success: true, user: userDoc.data()};
         } else {
           console.error('Invalid email or password');
+          setLoading(false);
           return {success: false, message: 'Invalid email or password'};
         }
       } catch (error) {
         console.error('Error logging in user:', error);
+        setLoading(false);
         return {success: false, message: 'Error logging in user'};
       }
     }
@@ -112,8 +119,15 @@ const AuthScreen = ({navigation}: any) => {
         />
         <Text style={styles.errorStyle}>{errors?.password}</Text>
       </View>
-      <TouchableOpacity onPress={handleLogin} style={styles.buttonWrapper}>
-        <Text style={styles.buttonTextWrapper}>{Constant.Login}</Text>
+      <TouchableOpacity
+        onPress={handleLogin}
+        style={styles.buttonWrapper}
+        disabled={loading}>
+        {loading ? (
+          <ActivityIndicator size="large" color={Colors.White} />
+        ) : (
+          <Text style={styles.buttonTextWrapper}>{Constant.Login}</Text>
+        )}
       </TouchableOpacity>
       <Text
         onPress={handleForgotPasssword}

@@ -8,10 +8,10 @@ import {
 import React, {useState} from 'react';
 import {wp} from '../utils/responsive';
 import Colors from '../utils/colors';
-import SendMessage from '../componets/SendMessage';
-import Calculator from '../componets/Calculator';
-import UploadProfile from '../componets/UploadProfile';
-import SendNotification from '../componets/SendNotification';
+import SendMessage from '../components/SendMessage';
+import Calculator from '../components/Calculator';
+import UploadProfile from '../components/UploadProfile';
+import SendNotification from '../components/SendNotification';
 import Assets from '../utils/assets';
 
 const Dashboard = () => {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     width: wp(25),
     height: wp(15),
     borderWidth: 1,
-    borderColor: Colors.Black,
+    borderColor: Colors.LightGray,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     height: wp(15),
     borderWidth: 1,
     borderColor: Colors.Black,
+    backgroundColor: Colors.White
   },
   imageStyle: {
     width: wp(8),
