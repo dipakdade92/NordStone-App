@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
 import Colors from '../utils/colors';

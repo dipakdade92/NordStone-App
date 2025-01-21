@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     width: wp(95),
     height: wp(13),
-    marginTop: wp(25),
+    marginTop: wp(15),
     borderRadius: wp(2),
     backgroundColor: Colors.Black,
     alignSelf: 'center',

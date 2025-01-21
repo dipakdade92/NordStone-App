@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   SafeAreaView,
   StyleSheet,
@@ -86,7 +87,11 @@ const SendMessage = () => {
         }}
         disabled={message.trim() === ''}
         style={styles.buttonWrapper}>
-        <Text style={styles.buttonTextWrapper}>{Constant.send}</Text>
+          {loading ? 
+            <ActivityIndicator size="large" color={Colors.White} /> 
+          : 
+           <Text style={styles.buttonTextWrapper}>{Constant.send}</Text>
+          }
       </TouchableOpacity>
 
       <View style={styles.flatlistMainWrapper}>
